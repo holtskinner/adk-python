@@ -2,20 +2,22 @@
 
 We'd love to accept your patches and contributions to this project.
 
--   [How to contribute](#how-to-contribute)
--   [Before you begin](#before-you-begin)
-    -   [Sign our Contributor License Agreement](#sign-our-contributor-license-agreement)
-    -   [Review our community guidelines](#review-our-community-guidelines)
--   [Contribution workflow](#contribution-workflow)
-    -   [Finding Issues to Work On](#finding-issues-to-work-on)
-    -   [Requirement for PRs](#requirement-for-prs)
-    -   [Large or Complex Changes](#large-or-complex-changes)
-    -   [Testing Requirements](#testing-requirements)
-    -   [Unit Tests](#unit-tests)
-    -   [Manual End-to-End (E2E) Tests](#manual-end-to-end-e2e-tests)
-    -   [Documentation](#documentation)
-    -   [Development Setup](#development-setup)
-    -   [Code reviews](#code-reviews)
+- [How to contribute](#how-to-contribute)
+  - [Before you begin](#before-you-begin)
+    - [Sign our Contributor License Agreement](#sign-our-contributor-license-agreement)
+    - [Review our community guidelines](#review-our-community-guidelines)
+    - [Code reviews](#code-reviews)
+  - [Contribution workflow](#contribution-workflow)
+    - [Finding Issues to Work On](#finding-issues-to-work-on)
+    - [Requirement for PRs](#requirement-for-prs)
+    - [Large or Complex Changes](#large-or-complex-changes)
+    - [Testing Requirements](#testing-requirements)
+      - [Unit Tests](#unit-tests)
+      - [Manual End-to-End (E2E) Tests](#manual-end-to-end-e2e-tests)
+    - [Documentation](#documentation)
+  - [Development Setup](#development-setup)
+  - [Contributing Resources](#contributing-resources)
+  - [Vibe Coding](#vibe-coding)
 
 ## Before you begin
 
@@ -182,10 +184,9 @@ part before or alongside your code PR.
     pytest ./tests/unittests
     ```
 
-6.  **Auto-format the code:**
+6.  **Format and lint the code:**
 
-    **NOTE**: We use `isort` and `pyink` for styles. Use the included
-    autoformat.sh to auto-format.
+    **NOTE**: We use `ruff` for formatting and linting Use the included `autoformat.sh` to auto-format.
 
     ```shell
     ./autoformat.sh

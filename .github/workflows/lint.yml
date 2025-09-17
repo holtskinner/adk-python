@@ -1,4 +1,3 @@
-#!/bin/bash
 # Copyright 2025 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,13 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Autoformat ADK codebase.
+name: "Linting and Formatting"
 
-if ! command -v ruff &> /dev/null
-then
-    echo "ruff not found, refer to CONTRIBUTING.md to set up dev environment first."
-    exit
-fi
+on:
+  pull_request:
+    paths:
+      - "**.py"
+      - "pyproject.toml"
 
-ruff check --fix-only . --config pyproject.toml
-ruff format . --config pyproject.toml
+jobs:
+  ruff-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.x"
+      - name: Install ruff
+        run: pip install ruff
+      - name: Run ruff formatter check
+        run: ruff format --check .
+      - name: Run ruff linter
+        run: ruff check .

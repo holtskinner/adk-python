@@ -25,7 +25,7 @@ Please refer to [ADK Project Overview and Architecture](https://github.com/googl
 
 ### Python Style Guide
 
-The project follows the Google Python Style Guide. Key conventions are enforced using `pylint` with the provided `pylintrc` configuration file. Here are some of the key style points:
+The project follows the Google Python Style Guide. Key conventions are enforced using `ruff`. The configuration can be found in the `pyproject.toml` file. Here are some of the key style points:
 
 *   **Indentation**: 2 spaces.
 *   **Line Length**: Maximum 80 characters.
@@ -37,9 +37,9 @@ The project follows the Google Python Style Guide. Key conventions are enforced 
 *   **Imports**: Organized and sorted.
 *   **Error Handling**: Specific exceptions should be caught, not general ones like `Exception`.
 
-### Autoformat
+### Formatting & Linting
 
-We have autoformat.sh to help solve import organize and formatting issues.
+We have `autoformat.sh` to help solve import organize and formatting issues.
 
 ```bash
 # Run in open_source_workspace/
