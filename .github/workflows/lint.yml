@@ -21,18 +21,41 @@ on:
       - "pyproject.toml"
 
 jobs:
-  ruff-check:
+  lint:
+    name: Lint Code Base
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v5
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: "3.x"
-      - name: Install ruff
-        run: pip install ruff
-      - name: Run ruff formatter check
-        run: ruff format --check .
-      - name: Run ruff linter
-        run: ruff check .
+
+      - name: Run Ruff Linter
+        id: ruff-lint
+        uses: astral-sh/ruff-action@v3
+        continue-on-error: true
+
+      - name: Run Ruff Formatter
+        id: ruff-format
+        uses: astral-sh/ruff-action@v3
+        continue-on-error: true
+        with:
+          args: "format --check"
+
+      - name: Run Pyright (Pylance equivalent)
+        id: pyright
+        continue-on-error: true
+        uses: jakebailey/pyright-action@v2
+        with:
+          pylance-version: latest-release
+
+      - name: Check Linter Statuses
+        if: always() # This ensures the step runs even if previous steps failed
+        run: |
+          if [[ "${{ steps.ruff-lint.outcome }}" == "failure" || \
+                "${{ steps.ruff-format.outcome }}" == "failure" ]]; then
+            echo "One or more linting/checking steps failed."
+            exit 1
+          fi
